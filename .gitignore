@@ -1,0 +1,8 @@
+# Ignora tutti i file del tipo.exe
+
+*.exe
+
+
+# Ignora la cartella di Visual Studio Code con dentro setting Debug
+
+.vscode
