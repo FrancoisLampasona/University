@@ -2,6 +2,10 @@
 
 *.
 
+#Ignora tutti i file del tipo
+
+.DS_Store
+
 #Ingnora tutti i file del tipo .dSYM
 
 *.dSYM
@@ -17,3 +21,16 @@
 # Ignora la cartella di Visual Studio Code con dentro setting Debug
 
 .vscode
+
+# Ingora tutti i file del tipo Esercizio_
+
+Esercizio_1
+Esercizio_2
+Esercizio_3
+Esercizio_4
+Esercizio_5
+Esercizio_6
+Esercizio_7
+Esercizio_8
+Esercizio_9
+Esercizio_10
