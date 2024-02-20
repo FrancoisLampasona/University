@@ -24,7 +24,7 @@ int main(void)
 
         printf("\n");
 
-        for (int j = 0; j < i + 1; j++)
+        for (int j = 0; j <= i ; j++)
         {
             printf(" ");
         }
