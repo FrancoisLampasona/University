@@ -1,26 +1,41 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 
-#define N 10
+#define N 15
 
 int main(void)
 {
 
-    char stringa_1[N];
-    char stringa_2[N];
-    char stringa_3[N];
+    char stringa_matrix[3][N];
     char stringa_aggiuntiva[N];
+    int prezzo, quantita;
 
-    printf("Inserisci il primo prodotto :");
-    scanf("%s\n", stringa_1);
+    for (int i = 0; i < 3; i++)
+    {
+        printf("Inserisci il %d^ prodotto :", i + 1);
+        fgets(stringa_matrix[i], N, stdin);
+    }
 
-    // printf("Inserisci il secondo prodotto :");
-    // scanf("%s\n", stringa_2);
+    printf("Inserisci il prodotto e la quantita :");
+    fgets(stringa_aggiuntiva, N, stdin);
 
-    // printf("Inserisci il terzo prodotto :");
-    // scanf("%s", stringa_3);
+    char *token_nome_aggiuntivo = strtok(stringa_aggiuntiva, " ");
+    char *token_quanto_aggiuntivo = strtok(NULL, " ");
+    quantita = atoi(token_quanto_aggiuntivo);
 
-    char *token = strtok(stringa_1, " ");
-    // char *token2 = strtok(stringa_1, isalnum(stringa_1));
+    for (int i = 0; i < 3; i++)
+    {
+        char *token = strtok(stringa_matrix[i], " ");
+        if (token != NULL)
+        {
+            if (strcmp(token_nome_aggiuntivo, token) == 0)
+            {
+                token = strtok(NULL, " ");
+                prezzo = atoi(token);
+                printf("Il prezzo totale e' %d", quantita * prezzo);
+            }
+        }
+    }
 }
