@@ -1,0 +1,10 @@
+Matematica Giovanni Rossi 12-14 12 100%
+Storia Maria Bianchi 10-12 8 85%
+Fisica Marco Verdi 8-10 10 95%
+Chimica Laura Neri 14-16 9 88%
+Letteratura Alberto Rosso 16-18 11 92%
+Informatica Sofia Gialli 10-12 13 98%
+Biologia Luca Viola 12-14 7 80%
+Geografia Martina Marrone 14-16 9 91%
+Arte Alessandro Celeste 16-18 8 87%
+Musica Chiara Blu 8-10 10 94%
