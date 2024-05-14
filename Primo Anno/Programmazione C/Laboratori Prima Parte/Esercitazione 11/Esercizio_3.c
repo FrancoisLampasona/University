@@ -30,6 +30,11 @@ void maxmateria(insegnamenti struttura[], int indice)
     printf("La materia che assegna piu' crediti e' %s", struttura[conserva_indice].materia);
 }
 
+void somma_crediti_media_superamento(insegnamenti struttura[], char insegnate[20], int indice)
+{
+    
+}
+
 int main(int argc, const char *argv[])
 {
     insegnamenti insegnamento[N];
@@ -57,6 +62,8 @@ int main(int argc, const char *argv[])
     {
         indice++;
     }
+
+    fclose(fp);
 
     for (int i = 0; i < indice; i++)
     {

@@ -94,9 +94,9 @@ Questi tre passaggi, fetch, decode ed execute, rappresentano il ciclo fondamenta
 
 > # Rappresentazione dell'Informazione nei calcolatori :
 
-Parlare della rappresentazione dell'informazione nei calcolatori è affascinante! Ne discutiamo?
-
 La rappresentazione dell'informazione nei calcolatori è fondamentale perché tutto ciò che un computer elabora, memorizza o comunica deve essere convertito in una forma che la macchina possa comprendere e manipolare. Ci sono diversi aspetti cruciali da considerare:
+
+---
 
 ### Bit e Byte
 
@@ -158,6 +158,8 @@ Ad esempio, se k = 3, abbiamo 2<sup>3</sup> = 8 numeri binari possibili (000, 00
 
 La nota aggiunta menziona che questi numeri binari corrispondono ai numeri decimali nell'intervallo da 0 a 2<sup>k</sup> - 1. Questo perché possiamo interpretare una sequenza di bit come un numero in base 2. Ad esempio, il numero binario 101 corrisponde al numero decimale 5 (1\*2<sup>2</sup> + 0\*2<sup>1</sup> + 1\*2<sup>0</sup>).
 
+---
+
 ### Calcolo del numero di bit necessari per la rappresentazione binaria di un numero decimale:
 
 Per determinare quanti bit sono necessari per rappresentare un numero decimale \( n \) in binario, possiamo utilizzare il seguente approccio:
@@ -167,12 +169,46 @@ Per determinare quanti bit sono necessari per rappresentare un numero decimale \
 
 La formula per calcolare il numero di bit necessari per rappresentare un numero decimale \( n \) in binario è:
 
-\[ \text{Bit necessari} = \lceil \log_2(n + 1) \rceil \]
-
-Dove \( \lceil x \rceil \) indica l'arrotondamento per eccesso di \( x \) all'intero più vicino.
+Bit necessari = log<sub>2</sub>(n + 1)
 
 Ad esempio, per rappresentare il numero decimale 10 in binario, possiamo fare quanto segue:
 
-\[ \text{Bit necessari} = \lceil \log_2(10 + 1) \rceil = \lceil \log_2(11) \rceil = \lceil \approx 3.459 \rceil = 4 \]
+Bit necessari = log<sub>2</sub>(10 + 1) = log<sub>2</sub>(11) = 3.459 = 4
 
 Quindi, sono necessari 4 bit per rappresentare il numero decimale 10 in binario.
+
+Esempio:
+Per rappresentare 57 informazioni diverse: <br>
+5 bit non bastano , poiché : 2<sup>5</sup> = 32 < 57 <br>
+6 bit invece bastano : 2<sup>6</sup> = 64 > 57 <br>
+
+# Operazioni Logiche in Informatica
+
+Le operazioni logiche, note anche come operazioni booleane, sono fondamentali nell'informatica e nella logica digitale. Queste operazioni lavorano su valori booleani (vero/falso, 1/0) e sono essenziali per la costruzione di circuiti logici e per la programmazione.
+
+## Tipi di Operazioni Logiche
+
+### 1. AND (E)
+### 2. OR (O)
+### 3. NOT (NON)
+### 4. NAND (NOT AND)
+### 5. NOR (NOT OR)
+### 6. XOR (OR esclusivo)
+### 7. XNOR (OR esclusivo negativo)
+
+| A | B | A AND B | A OR B | NOT A | A NAND B | A NOR B | A XOR B | A XNOR B |
+|---|---|---------|--------|-------|----------|---------|---------|----------|
+| 0 | 0 |    0    |   0    |   1   |    1     |    1    |    0    |    1     |
+| 0 | 1 |    0    |   1    |   1   |    1     |    0    |    1    |    0     |
+| 1 | 0 |    0    |   1    |   0   |    1     |    0    |    1    |    0     |
+| 1 | 1 |    1    |   1    |   0   |    0     |    0    |    0    |    1     |
+
+## Utilizzo delle Operazioni Logiche
+
+Le operazioni logiche sono ampiamente utilizzate nei seguenti contesti:
+
+- **Circuiti Digitali**: Implementazione di circuiti combinatori e sequenziali.
+- **Programmazione**: Condizioni nei costrutti di controllo come `if`, `while`, e `for`.
+- **Algoritmi**: Manipolazione di bit e operazioni bitwise.
+- **Database**: Filtri di ricerca con operatori logici.
+
