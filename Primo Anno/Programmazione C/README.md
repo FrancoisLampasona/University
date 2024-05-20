@@ -189,19 +189,25 @@ Le operazioni logiche, note anche come operazioni booleane, sono fondamentali ne
 ## Tipi di Operazioni Logiche
 
 ### 1. AND (E)
+
 ### 2. OR (O)
+
 ### 3. NOT (NON)
+
 ### 4. NAND (NOT AND)
+
 ### 5. NOR (NOT OR)
+
 ### 6. XOR (OR esclusivo)
+
 ### 7. XNOR (OR esclusivo negativo)
 
-| A | B | A AND B | A OR B | NOT A | A NAND B | A NOR B | A XOR B | A XNOR B |
-|---|---|---------|--------|-------|----------|---------|---------|----------|
-| 0 | 0 |    0    |   0    |   1   |    1     |    1    |    0    |    1     |
-| 0 | 1 |    0    |   1    |   1   |    1     |    0    |    1    |    0     |
-| 1 | 0 |    0    |   1    |   0   |    1     |    0    |    1    |    0     |
-| 1 | 1 |    1    |   1    |   0   |    0     |    0    |    0    |    1     |
+| A   | B   | A AND B | A OR B | NOT A | A NAND B | A NOR B | A XOR B | A XNOR B |
+| --- | --- | ------- | ------ | ----- | -------- | ------- | ------- | -------- |
+| 0   | 0   | 0       | 0      | 1     | 1        | 1       | 0       | 1        |
+| 0   | 1   | 0       | 1      | 1     | 1        | 0       | 1       | 0        |
+| 1   | 0   | 0       | 1      | 0     | 1        | 0       | 1       | 0        |
+| 1   | 1   | 1       | 1      | 0     | 0        | 0       | 0       | 1        |
 
 ## Utilizzo delle Operazioni Logiche
 
@@ -212,3 +218,203 @@ Le operazioni logiche sono ampiamente utilizzate nei seguenti contesti:
 - **Algoritmi**: Manipolazione di bit e operazioni bitwise.
 - **Database**: Filtri di ricerca con operatori logici.
 
+## Conversioni di Base:
+
+## Conversione da Base 10 a Base \( b \)
+
+Per convertire un numero decimale (base 10) a un numero in un'altra base \( b \), si utilizza il metodo della divisione ripetuta. Questo metodo comporta la divisione del numero decimale per la base \( b \) e l'annotazione dei resti. Ecco i passaggi:
+
+1. **Dividere il numero per la base \( b \)** e annotare il quoziente e il resto.
+2. **Prendere il quoziente ottenuto e dividerlo nuovamente per la base \( b \)**, annotando ancora una volta il quoziente e il resto.
+3. **Ripetere il processo** fino a quando il quoziente diventa 0.
+4. **Leggere i resti dal basso verso l'alto** per ottenere il numero nella base \( b \).
+
+### Esempio: Convertire 45 in base 10 a base 2
+
+1. \( 45 \div 2 = 22 \) con resto 1
+2. \( 22 \div 2 = 11 \) con resto 0
+3. \( 11 \div 2 = 5 \) con resto 1
+4. \( 5 \div 2 = 2 \) con resto 1
+5. \( 2 \div 2 = 1 \) con resto 0
+6. \( 1 \div 2 = 0 \) con resto 1
+
+Leggendo i resti dal basso verso l'alto, otteniamo: 101101. Quindi, 45 in base 10 è 101101 in base 2.
+
+## Conversione da Base \( b \) a Base 10
+
+Per convertire un numero da una base \( b \) a base 10, si utilizza la rappresentazione polinomiale del numero. Ogni cifra del numero in base \( b \) è moltiplicata per la base \( b \) elevata alla potenza corrispondente alla posizione della cifra, partendo da destra (con la posizione 0).
+
+### Esempio: Convertire 101101 in base 2 a base 10
+
+1. Identificare le posizioni delle cifre da destra a sinistra:
+   - <code>1 &times; 2<sup>5</sup> + 0 &times; 2<sup>4</sup> + 1 &times; 2<sup>3</sup> + 1 &times; 2<sup>2</sup> + 0 &times; 2<sup>1</sup> + 1 &times; 2<sup>0</sup></code>
+2. Calcolare i valori delle potenze e moltiplicare:
+   - <code>1 &times; 32 + 0 &times; 16 + 1 &times; 8 + 1 &times; 4 + 0 &times; 2 + 1 &times; 1</code>
+3. Sommare i risultati:
+   - <code>32 + 0 + 8 + 4 + 0 + 1 = 45</code>
+
+Quindi, 101101 in base 2 è 45 in base 10.
+
+## Conversioni Veloci tra Basi Potenza di Due
+
+Le basi potenza di due (binaria, ottale, esadecimale) permettono conversioni rapide e semplici grazie alla loro relazione diretta. Ecco come eseguire queste conversioni.
+
+### Conversione tra Binario e Ottale
+
+Ogni cifra in ottale corrisponde a tre cifre binarie:
+
+- `000`<sub>2</sub> = `0`<sub>8</sub>
+- `001`<sub>2</sub> = `1`<sub>8</sub>
+- `010`<sub>2</sub> = `2`<sub>8</sub>
+- `011`<sub>2</sub> = `3`<sub>8</sub>
+- `100`<sub>2</sub> = `4`<sub>8</sub>
+- `101`<sub>2</sub> = `5`<sub>8</sub>
+- `110`<sub>2</sub> = `6`<sub>8</sub>
+- `111`<sub>2</sub> = `7`<sub>8</sub>
+
+#### Esempio: Convertire 101101 in binario a ottale
+
+1. Raggruppare le cifre binarie in gruppi di tre, partendo da destra:
+   - `101` `101`
+2. Convertire ogni gruppo in ottale:
+   - `101`<sub>2</sub> = `5`<sub>8</sub>
+   - `101`<sub>2</sub> = `5`<sub>8</sub>
+
+Quindi, 101101 in binario è 55 in ottale.
+
+### Conversione tra Binario e Esadecimale
+
+Ogni cifra in esadecimale corrisponde a quattro cifre binarie:
+
+- `0000`<sub>2</sub> = `0`<sub>16</sub>
+- `0001`<sub>2</sub> = `1`<sub>16</sub>
+- `0010`<sub>2</sub> = `2`<sub>16</sub>
+- `0011`<sub>2</sub> = `3`<sub>16</sub>
+- `0100`<sub>2</sub> = `4`<sub>16</sub>
+- `0101`<sub>2</sub> = `5`<sub>16</sub>
+- `0110`<sub>2</sub> = `6`<sub>16</sub>
+- `0111`<sub>2</sub> = `7`<sub>16</sub>
+- `1000`<sub>2</sub> = `8`<sub>16</sub>
+- `1001`<sub>2</sub> = `9`<sub>16</sub>
+- `1010`<sub>2</sub> = `A`<sub>16</sub>
+- `1011`<sub>2</sub> = `B`<sub>16</sub>
+- `1100`<sub>2</sub> = `C`<sub>16</sub>
+- `1101`<sub>2</sub> = `D`<sub>16</sub>
+- `1110`<sub>2</sub> = `E`<sub>16</sub>
+- `1111`<sub>2</sub> = `F`<sub>16</sub>
+
+#### Esempio: Convertire 101101 in binario a esadecimale
+
+1. Raggruppare le cifre binarie in gruppi di quattro, partendo da destra. Aggiungere zeri a sinistra se necessario:
+   - `0010` `1101`
+2. Convertire ogni gruppo in esadecimale:
+   - `0010`<sub>2</sub> = `2`<sub>16</sub>
+   - `1101`<sub>2</sub> = `D`<sub>16</sub>
+
+Quindi, 101101 in binario è 2D in esadecimale.
+
+### Conversione tra Ottale e Esadecimale
+
+Per convertire tra ottale e esadecimale, si passa attraverso il binario:
+
+#### Esempio: Convertire 55 in ottale a esadecimale
+
+1. Convertire l'ottale a binario:
+   - `5`<sub>8</sub> = `101`<sub>2</sub>
+   - `5`<sub>8</sub> = `101`<sub>2</sub>
+   - Quindi, 55 in ottale è 101101 in binario.
+2. Convertire il binario a esadecimale:
+   - `101101`<sub>2</sub> = `2D`<sub>16</sub>
+
+Quindi, 55 in ottale è 2D in esadecimale.
+
+## Considerazioni Finali
+
+Questi metodi sono generali e possono essere applicati a qualsiasi base \( b \) maggiore di 1. Per basi superiori a 10, si utilizzano lettere dell'alfabeto per rappresentare i valori delle cifre superiori a 9 (ad esempio, A per 10, B per 11, ecc.).
+
+Comprendere e padroneggiare queste tecniche è essenziale per lavorare con diversi sistemi numerici, particolarmente nei campi dell'informatica e dell'ingegneria, dove basi come 2 (binaria), 8 (ottale) e 16 (esadecimale) sono comunemente utilizzate.
+
+# Rappresentazione degli Interi
+
+La rappresentazione degli interi nei computer è fondamentale per lo sviluppo di software e l'implementazione di algoritmi. Gli interi possono essere rappresentati in vari modi, ognuno con le proprie caratteristiche e utilizzi. Ecco una panoramica delle principali rappresentazioni degli interi:
+
+## Rappresentazione Binaria
+
+Gli interi sono rappresentati in forma binaria, utilizzando solo due cifre: 0 e 1. Questa rappresentazione è naturale per i computer, che operano con circuiti digitali basati su stati di alta e bassa tensione, corrispondenti a 1 e 0 rispettivamente.
+
+### Interi Senza Segno
+
+Gli interi senza segno (unsigned integers) possono rappresentare solo valori positivi e zero. La loro rappresentazione binaria è semplice e diretta, dove ogni bit rappresenta una potenza di 2.
+
+Per un intero senza segno di \( n \) bit, i valori rappresentabili vanno da \( 0 \) a \( 2^n - 1 \).
+
+### Interi Con Segno
+
+Per rappresentare numeri negativi, esistono diverse convenzioni, tra cui:
+
+1. **Segno e Magnitudine (Sign and Magnitude)**:
+
+   - Il bit più significativo (MSB) indica il segno (0 per positivo, 1 per negativo).
+   - I restanti bit rappresentano la magnitudine (valore assoluto) del numero.
+   - Esempio (8 bit): +5 = `00000101`, -5 = `10000101`
+   - Svantaggi: Esistono due tipi di zero, la computazione delle operazioni aritmetiche non è immediata. Occorre differenziare il modo di usare le operazioni aritmetiche in base al segno degli operandi.
+
+2. **Complemento a Uno (One's Complement)**:
+
+   - Il numero negativo è ottenuto invertendo tutti i bit del numero positivo.
+   - Ha due rappresentazioni per lo zero: +0 (`00000000`) e -0 (`11111111`).
+   - Esempio (8 bit): +5 = `00000101`, -5 = `11111010`
+   - Vantaggi: La somma si puo’ effettuare nel modo classico.
+   - Svantaggi: Esistono due tipi di zero.
+
+3. **Complemento a Due (Two's Complement)**:
+   - Il numero negativo è ottenuto invertendo tutti i bit del numero positivo e aggiungendo 1 al risultato.
+   - Ha una sola rappresentazione per lo zero.
+   - Esempio (8 bit): +5 = `00000101`, -5 = `11111011`
+   - Per un intero con segno di \( n \) bit, i valori rappresentabili vanno da \( -2<sup>n-1</sup> \) a \( 2<sup>n-1</sup> - 1 \).
+   - Esiste un solo zero.
+   - E' compatibile con la somma.
+
+Il complemento a due è il metodo più utilizzato nei moderni computer per rappresentare numeri interi con segno, poiché semplifica le operazioni aritmetiche e logiche.
+
+## Estensione del Segno
+
+Quando si converte un numero intero con segno di una dimensione minore a una dimensione maggiore, si utilizza l'estensione del segno (sign extension). In questo processo, il bit di segno viene copiato nei bit più significativi della nuova rappresentazione per preservare il valore del numero.
+
+Esempio: Convertire un numero a 4 bit in un numero a 8 bit:
+
+- +5 (4 bit): `0101` -> (8 bit): `00000101`
+- -5 (4 bit): `1011` -> (8 bit): `11111011`
+
+## Rappresentazione in Virgola Mobile
+
+Per numeri molto grandi o molto piccoli, si utilizzano le rappresentazioni in virgola mobile (floating-point), che permettono di rappresentare un ampio intervallo di valori con una precisione limitata. Gli standard più comuni per la rappresentazione in virgola mobile sono definiti dall'IEEE (Institute of Electrical and Electronics Engineers).
+
+### Standard IEEE 754
+
+Lo standard IEEE 754 definisce formati per numeri in virgola mobile, i più comuni dei quali sono:
+
+- **Singola Precisione (32 bit)**:
+
+  - 1 bit per il segno
+  - 8 bit per l'esponente (con bias di 127)
+  - 23 bit per la mantissa (con un bit implicito)
+
+- **Doppia Precisione (64 bit)**:
+  - 1 bit per il segno
+  - 11 bit per l'esponente (con bias di 1023)
+  - 52 bit per la mantissa (con un bit implicito)
+
+La rappresentazione in virgola mobile include un bit di segno, un esponente (che determina l'ordine di grandezza del numero) e una mantissa (che rappresenta la precisione del numero).
+
+## Rappresentazione Decimale
+
+In alcuni contesti, come nei calcoli finanziari, si preferisce la rappresentazione decimale per evitare errori di arrotondamento associati alla rappresentazione binaria. Gli standard IEEE 754 includono anche formati per la rappresentazione decimale.
+
+### Decimal Floating-Point
+
+I formati a virgola mobile decimali rappresentano i numeri utilizzando una base 10, anziché una base 2. Questo permette di rappresentare esattamente numeri decimali come 0.1, che non possono essere rappresentati con precisione in binario.
+
+## Considerazioni Finali
+
+La scelta della rappresentazione degli interi dipende dall'applicazione specifica e dai requisiti di precisione e intervallo di valori. Comprendere le diverse rappresentazioni è essenziale per scrivere software efficiente e corretto, specialmente in campi come l'informatica, l'ingegneria e la scienza dei dati.
