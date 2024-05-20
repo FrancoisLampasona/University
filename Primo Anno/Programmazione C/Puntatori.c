@@ -54,7 +54,7 @@ int main()
     ptr_persona->eta = 30;              // Assegna il valore 30 al campo 'eta' della struttura puntata
 
     // Stampa dei valori della struttura attraverso il puntatore
-    printf("Nome: %s, Età: %d\n", ptr_persona->nome, ptr_persona->eta);
+    printf("Nome: %s, Eta': %d\n", ptr_persona->nome, ptr_persona->eta);
 
     // Esempio di allocazione dinamica della memoria per un array
     int *array_dinamico = (int *)malloc(5 * sizeof(int)); // Alloca memoria per un array di 5 interi
