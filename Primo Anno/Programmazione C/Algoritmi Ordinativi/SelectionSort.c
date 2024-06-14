@@ -28,7 +28,10 @@ void selectionSort(int *Vettore, int len)
             }
         }
         // Scambia l'elemento corrente con il minimo trovato
-        swap(Vettore, i, indice_min);
+        if (indice_min != i)
+        {
+            swap(Vettore, i, indice_min);
+        }
     }
 }
 

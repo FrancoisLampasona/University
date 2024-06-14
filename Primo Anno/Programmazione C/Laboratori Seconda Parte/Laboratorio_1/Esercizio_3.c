@@ -2,14 +2,14 @@
 
 void underscore(const char *s)
 {
+    if (*(s + 1) == '\0')
+    {
+        printf("_");
+    }
     if (*(s) != '\0')
     {
-        printf("%c_", *(s));
+        printf("_%c", *s);
         underscore(s + 1);
-    }
-    else
-    {
-        return;
     }
 }
 

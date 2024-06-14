@@ -76,7 +76,7 @@ Nodo *inserimento_in_coda_ricorsivo(int valore, Nodo *p)
     }
 }
 
-// Ricerca Di Un Valore 
+// Ricerca Di Un Valore
 Nodo *ricerca_valore(int valore, Nodo *p)
 {
     while (p != NULL)
@@ -202,11 +202,10 @@ void stampa_lista(Nodo *p)
         printf("Lista vuota\n");
         return;
     }
-    Nodo *corrente = p;
-    while (corrente != NULL)
+    while (p != NULL)
     {
-        printf(" %d ->", corrente->valore);
-        corrente = corrente->next;
+        printf(" %d ->", p->valore);
+        p = p->next;
     }
     printf(" NULL \n");
 }

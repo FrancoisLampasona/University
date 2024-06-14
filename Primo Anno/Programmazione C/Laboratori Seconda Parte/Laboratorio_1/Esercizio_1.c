@@ -3,33 +3,25 @@
 
 int ricercabinaria(int *a, int element, int first, int last)
 {
+    if (first > last)
+    {
+        return -1;
+    }
+
     int middle = (first + last) / 2;
 
-    if (element == a[first])
-    {
-        return first;
-    }
-    else if (element == a[last])
-    {
-        return last;
-    }
-    else if (element == a[middle])
+    if (a[middle] == element)
     {
         return middle;
     }
-
-    if (element > a[middle])
+    else if (a[middle] > element)
     {
-        first = middle;
-        return ricercabinaria(a, element, first, last);
+        return ricercabinaria(a, element, first, middle - 1);
     }
-    else if (element < a[middle])
+    else if (a[middle] < element)
     {
-        last = middle;
-        return ricercabinaria(a, element, first, last);
+        return ricercabinaria(a, element, middle + 1, last);
     }
-
-    return -1;
 }
 
 int main(void)

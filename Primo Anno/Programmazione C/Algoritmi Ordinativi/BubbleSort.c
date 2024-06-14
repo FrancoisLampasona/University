@@ -4,19 +4,30 @@
 
 #define N 10
 
-void bubbleSort(int *array, int len)
+void bubbleSort(int *arr, int n)
 {
-    for (int i = 0; i < len - 1; i++)
+    int swapped; // Variabile per tenere traccia se è avvenuto uno scambio
+    // Ciclo esterno per passare attraverso tutti gli elementi dell'array
+    for (int i = 0; i < n - 1; i++)
     {
-        for (int j = 0; j < len - i - 1; j++)
+        swapped = 0; // Resetta la variabile swapped ad ogni iterazione del ciclo esterno
+        // Ciclo interno per confrontare gli elementi adiacenti e scambiarli se necessario
+        for (int j = 0; j < n - i - 1; j++)
         {
-            // Se l'elemento successivo è minore dell'elemento corrente, scambiali
-            if (array[j] > array[j + 1])
+            // Controlla se l'elemento corrente è maggiore del prossimo elemento
+            if (arr[j] > arr[j + 1])
             {
-                int temp = array[j];
-                array[j] = array[j + 1];
-                array[j + 1] = temp;
+                // Se sì, scambia i due elementi
+                int temp = arr[j];   // Variabile temporanea per memorizzare il valore di arr[j]
+                arr[j] = arr[j + 1]; // Copia il valore di arr[j+1] in arr[j]
+                arr[j + 1] = temp;   // Copia il valore temporaneo in arr[j+1]
+                swapped = 1;         // Imposta swapped a 1 per indicare che è avvenuto uno scambio
             }
+        }
+        // Se non è avvenuto alcuno scambio durante l'iterazione del ciclo interno, l'array è già ordinato
+        if (swapped == 0)
+        {
+            break; // Esci dal ciclo esterno anticipatamente
         }
     }
 }
