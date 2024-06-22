@@ -1,134 +1,205 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-typedef struct Tree
+struct node
 {
-    int num;
-    struct Tree *right;
-    struct Tree *left;
-} NodeTree;
+    void *pv;
+    char tipo;
+    struct node *next;
+};
 
-typedef struct queue
+void crea_lista(struct node **p, FILE *fd)
 {
-    NodeTree *node;
-    struct queue *next;
-} NodeQueue;
+    char tipo;
+    char stringa[256];
+    int intero;
+    double doppio_num;
 
-NodeTree *inserisci_nodo(NodeTree *p, int i)
-{
-    if (!p)
+    while (fgets(stringa, sizeof(stringa), fd))
     {
-        NodeTree *new_node = (NodeTree *)malloc(sizeof(NodeTree));
-        if (!new_node)
+
+        if (sscanf(stringa, "%c %s", &tipo, stringa) == 2)
         {
-            printf("Errore allocazione memoria\n");
-            exit(1);
+            struct node *new_node = (struct node *)malloc(sizeof(struct node));
+            if (!new_node)
+            {
+                printf("Errore allocazione memoria\n");
+                exit(1);
+            }
+
+            new_node->tipo = tipo;
+            new_node->next = NULL;
+
+            printf("%c ", tipo);
+
+            if (tipo == '0')
+            {
+                sscanf(stringa, "%d", &intero);
+                new_node->pv = (int *)malloc(sizeof(int));
+                if (!new_node)
+                {
+                    printf("Errore allocazione memoria\n");
+                    exit(2);
+                }
+                *(int *)new_node->pv = intero;
+                printf("%d\n", *(int *)new_node->pv);
+            }
+            else if (tipo == '1')
+            {
+                sscanf(stringa, "%lf", &doppio_num);
+                new_node->pv = (double *)malloc(sizeof(double));
+                if (!new_node)
+                {
+                    printf("Errore allocazione memoria\n");
+                    exit(3);
+                }
+                *(double *)new_node->pv = doppio_num;
+                printf("%lf \n", *(double *)new_node->pv);
+            }
+            else if (tipo == '2')
+            {
+                new_node->pv = (char *)malloc(sizeof(char) * strlen(stringa) + 1);
+                if (!new_node)
+                {
+                    printf("Errore allocazione memoria\n");
+                    exit(4);
+                }
+                strcpy((char *)new_node->pv, stringa);
+                printf("%s \n", new_node->pv);
+            }
+
+            if (!(*p))
+            {
+                *p = new_node;
+            }
+            else
+            {
+                struct node *tmp = *p;
+                while (tmp->next)
+                {
+                    tmp = tmp->next;
+                }
+                tmp->next = new_node;
+            }
         }
-
-        new_node->num = i;
-        new_node->right = NULL;
-        new_node->left = NULL;
-        return new_node;
-    }
-
-    if (i < p->num)
-    {
-        p->left = inserisci_nodo(p->left, i);
-    }
-    else if (i > p->num)
-    {
-        p->right = inserisci_nodo(p->right, i);
-    }
-
-    return p;
-}
-
-void inOrderTraversal(NodeTree *root)
-{
-    if (root != NULL)
-    {
-        inOrderTraversal(root->left);
-        printf("%d ", root->num);
-        inOrderTraversal(root->right);
     }
 }
 
-void enqueue_coda(NodeQueue **head, NodeQueue **tail, NodeTree *p)
+void inserisci_ordianto(struct node *v[3], struct node *p)
 {
-    NodeQueue *new_node = (NodeQueue *)malloc(sizeof(NodeQueue));
-    if (!new_node)
+    while (p)
     {
-        printf("Errore allocazione della memoria\n");
-        exit(1);
-    }
-    new_node->node = p;
-    new_node->next = NULL;
+        if (p->tipo == '0')
+        {
+            struct node *new_node_0 = (struct node *)malloc(sizeof(struct node));
+            if (!new_node_0)
+            {
+                printf("Errore allocazione memoria\n");
+                exit(5);
+            }
+            new_node_0->next = NULL;
+            new_node_0->tipo = p->tipo;
+            new_node_0->pv = p->pv;
 
-    if (*tail == NULL)
-    {
-        *head = new_node;
-        *tail = new_node;
-    }
-    else
-    {
-        (*tail)->next = new_node;
-        *tail = new_node;
+            if (v[0] == NULL)
+            {
+                struct node *tmp = v[0];
+                while (tmp->next)
+                {
+                    tmp = tmp->next;
+                }
+                tmp->next = new_node_0;
+            }
+        }
+        else if (p->tipo == '1')
+        {
+            struct node *new_node_1 = (struct node *)malloc(sizeof(struct node));
+            if (!new_node_1)
+            {
+                printf("Errore allocazione memoria\n");
+                exit(6);
+            }
+            new_node_1->next = NULL;
+            new_node_1->tipo = p->tipo;
+            new_node_1->pv = p->pv;
+
+            if (v[1] == NULL)
+            {
+                struct node *tmp = v[1];
+                while (tmp->next)
+                {
+                    tmp = tmp->next;
+                }
+                tmp->next = new_node_1;
+            }
+        }
+        else if (p->tipo == '2')
+        {
+            struct node *new_node_2 = (struct node *)malloc(sizeof(struct node));
+            if (!new_node_2)
+            {
+                printf("Errore allocazione memoria\n");
+                exit(7);
+            }
+            new_node_2->next = NULL;
+            new_node_2->tipo = p->tipo;
+            new_node_2->pv = p->pv;
+
+            if (v[2] == NULL)
+            {
+                struct node *tmp = v[2];
+                while (tmp->next)
+                {
+                    tmp = tmp->next;
+                }
+                tmp->next = new_node_2;
+            }
+        }
     }
 }
 
-NodeTree *dequeue_coda(NodeQueue **head, NodeQueue **tail)
+void print_list(struct node *testa)
 {
-    if (*head == NULL)
-        return NULL;
-
-    NodeQueue *temp = *head;
-    *head = (*head)->next;
-    if (*head == NULL)
-        *tail = NULL;
-
-    NodeTree *node = temp->node;
-    free(temp);
-    return node;
-}
-
-void bfs(NodeTree *root)
-{
-    if (root == NULL)
+    if (!testa)
+    {
+        printf("NULL\n");
         return;
-
-    NodeQueue *head = NULL;
-    NodeQueue *tail = NULL;
-
-    enqueue_coda(&head, &tail, root);
-
-    while (head != NULL)
-    {
-        NodeTree *current = dequeue_coda(&head, &tail);
-        printf("%d ", current->num);
-
-        if (current->left != NULL)
-            enqueue_coda(&head, &tail, current->left);
-        if (current->right != NULL)
-            enqueue_coda(&head, &tail, current->right);
     }
+    if (testa->tipo == '1')
+    {
+        printf("%d -> ", *(int *)testa->pv);
+    }
+    else if (testa->tipo == '1')
+    {
+        printf("%lf -> ", *(double *)testa->pv);
+    }
+    else if (testa->tipo == '2')
+    {
+        printf("%s -> ", (char *)testa->pv);
+    }
+    print_list(testa->next);
 }
 
 int main(void)
 {
-    NodeTree *root = NULL;
-    root = inserisci_nodo(root, 40);
-    inserisci_nodo(root, 12);
-    inserisci_nodo(root, 62);
-    inserisci_nodo(root, 55);
-    inserisci_nodo(root, 67);
-    inserisci_nodo(root, 60);
-    inserisci_nodo(root, 63);
-    inserisci_nodo(root, 70);
-    inOrderTraversal(root);
 
-    printf("\nVisita in ampiezza (BFS):\n");
-    bfs(root);
-    printf("\n");
+    FILE *fp = fopen("testo_file_1.txt", "r");
+    if (!fp)
+    {
+        printf("Errore apertura file\n");
+        return 1;
+    }
 
-    return 0;
+    struct node *testa = NULL;
+    struct node *testa_separate[3];
+    testa_separate[0] = NULL;
+    testa_separate[1] = NULL;
+    testa_separate[2] = NULL;
+
+    crea_lista(&testa, fp);
+    print_list(testa);
+
+    inserisci_ordianto(&testa_separate[3], testa);
+    print_list(testa_separate[0]);
 }

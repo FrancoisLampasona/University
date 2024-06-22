@@ -1,6 +1,6 @@
-ciao
-sono
-una
-persona
-chiamata
-roberto
+0 24
+2 Mamma
+0 38
+1 0.35
+2 Casa
+1 123.34

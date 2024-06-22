@@ -1,102 +1,77 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct treeNode
+typedef struct tree
 {
-    int value;
-    struct treeNode *sinistro;
-    struct treeNode *destro;
-} TreeNode;
+    int num;
+    struct tree *right;
+    struct tree *left;
+} NodeTree;
 
-TreeNode *create_node(int value)
+NodeTree *crea_nodo(NodeTree *root, int num)
 {
-    TreeNode *new_node = (TreeNode *)malloc(sizeof(TreeNode));
-    if (!new_node)
+    if (root == NULL)
     {
-        printf("Errore allocazione memoria\n");
-        exit(1);
-    }
-    new_node->value = value;
-    new_node->sinistro = NULL;
-    new_node->destro = NULL;
-
-    return new_node;
-}
-
-TreeNode *new_tree(TreeNode *root, int value)
-{
-    if (!root)
-    {
-        root = create_node(value);
-        return root;
+        NodeTree *new_node = (NodeTree *)malloc(sizeof(NodeTree));
+        if (!new_node)
+        {
+            printf("Errore allocazione memoria\n");
+            exit(1);
+        }
+        new_node->num = num;
+        new_node->left = NULL;
+        new_node->right = NULL;
+        return new_node;
     }
 
-    if (value < root->value)
+    if (num < root->num)
     {
-        root->sinistro = new_tree(root->sinistro, value);
+        root->left = crea_nodo(root->left, num);
     }
-    else
+    else if (num > root->num)
     {
-        root->destro = new_tree(root->destro, value);
+        root->right = crea_nodo(root->right, num);
     }
+
     return root;
 }
 
-void inOrderTraversal(TreeNode *root)
+void visit_preorder(NodeTree *root)
 {
     if (root)
     {
-        inOrderTraversal(root->sinistro);
-        printf("%d ", root->value);
-        inOrderTraversal(root->destro);
+        printf("%d ", root->num);
+        visit_preorder(root->left);
+        visit_preorder(root->right);
     }
 }
 
-int conta_foglie(TreeNode *root)
+int contafoglie(NodeTree *root)
 {
     if (root == NULL)
     {
-        return 0; // No leaf in an empty tree
+        return 0;
     }
-    if (root->sinistro == NULL && root->destro == NULL)
+    if (root->left == NULL && root->right == NULL)
     {
-        return 1; // This node is a leaf
+        return 1;
     }
-    return conta_foglie(root->sinistro) + conta_foglie(root->destro);
-}
-
-int altezza_albero(TreeNode *root)
-{
-    if (root == NULL)
-        return -1; // Altezza di un albero vuoto è -1
-
-    int altezzaSinistra = altezza_albero(root->sinistro);
-    int altezzaDestra = altezza_albero(root->destro);
-
-    // Restituisce l'altezza massima tra il sottoalbero sinistro e quello destro
-    return 1 + (altezzaSinistra > altezzaDestra ? altezzaSinistra : altezzaDestra);
+    return conta_foglie(root->left) + conta_foglie(root->right);
 }
 
 int main(void)
 {
-    TreeNode *root = NULL;
-    root = new_tree(root, 15);
-    new_tree(root, 1);
-    new_tree(root, 32);
-    new_tree(root, 16);
-    new_tree(root, 6);
-    new_tree(root, 3);
-    new_tree(root, 8);
-    new_tree(root, 7);
-    new_tree(root, 9);
-    new_tree(root, 10);
+    NodeTree *root = NULL;
+    root = crea_nodo(root, 8);
+    crea_nodo(root, 3);
+    crea_nodo(root, 10);
+    crea_nodo(root, 1);
+    crea_nodo(root, 6);
+    crea_nodo(root, 14);
+    crea_nodo(root, 13);
+    crea_nodo(root, 4);
+    crea_nodo(root, 7);
 
-    printf("Traversale in ordine: ");
-    inOrderTraversal(root);
-    printf("\n");
-
-    printf("Ci sono %d foglie nell'albero \n", conta_foglie(root));
-    printf("L'altezza dell'albero e' %d\n", altezza_albero(root));
-
+    visit_preorder(root);
     return 0;
 }

@@ -76,6 +76,67 @@ void printArray(int arr[], int n)
     printf("\n");
 }
 
+// Funzione trova minimo
+int minimo(int *B, int n)
+{
+    int mi = B[0];
+    for (int i = 1; i < n; i++)
+    {
+        if (B[i] < mi)
+        {
+            mi = B[i];
+        }
+    }
+    return mi;
+}
+
+// Funzione trova Massimo
+int massimo(int *B, int n)
+{
+    int ma = B[0];
+    for (int i = 1; i < n; i++)
+    {
+        if (B[i] > ma)
+        {
+            ma = B[i];
+        }
+    }
+    return ma;
+}
+
+// Funzione di ordinamento Counting Sort Ottimizzato
+void counting_sort_ottimizzato(int *B, int n)
+{
+    // Trova il valore minimo e massimo in B
+    int mi = minimo(B, n);
+    int ma = massimo(B, n);
+
+    // Determina la dimensione dell'array W
+    int N = ma - mi + 1;
+
+    // Allocazione dinamica dell'array W e inizializzazione a zero
+    int *W = calloc(N, sizeof(int));
+
+    // Conteggio delle occorrenze di ciascun valore in B
+    for (int i = 0; i < n; i++)
+    {
+        W[B[i] - mi]++;
+    }
+
+    // Ricostruzione dell'array ordinato B
+    int k = 0; // indice per l'array B
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < W[i]; j++)
+        {
+            B[k++] = i + mi;
+        }
+    }
+
+    // Deallocazione della memoria per l'array W
+    free(W);
+}
+
 int main()
 {
     int arr[] = {4, 2, 2, 8, 3, 3, 1};
@@ -86,7 +147,10 @@ int main()
 
     countingSort(arr, n);
 
-    printf("Array ordinato:\n");
+    printf("\nArray Counting Sort:\n");
+    printArray(arr, n);
+
+    printf("\nArray Counting Sort Ottimizzato:\n");
     printArray(arr, n);
 
     return 0;
